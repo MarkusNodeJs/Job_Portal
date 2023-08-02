@@ -1,14 +1,28 @@
 import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import bodyParser from "body-parser";
+import colors from "colors";
 
-// DOTENV
-const port = 5000;
+// ** DOTENV *
+dotenv.config();
+const port = process.env.PORT;
 
-// REST object
-const app = express;
+// ** REST OBJECT *
+const app = express();
 
-// middlewares
+// ** MIDDLEWARES *
 app.use(express.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// ** HTTP GET REQUEST *
+app.get("/", (req, res) => {
+  res.send("Wenn Mark Recopelacion");
+});
+
+// ** API ROUTES *
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`.bgCyan);
 });
